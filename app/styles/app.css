@@ -1,1 +1,19 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+@font-face {
+  font-family: "my_font";
+  src: url("/fonts/FingerPaint-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #fcfcf7;
+  background-image: linear-gradient(
+    0deg,
+    transparent 97%,
+    #ab9e9e 98%,
+    #b2b2b2 100%
+  );
+  background-size: 100% 1.5rem, 1.5rem 100%;
+  font-family: "my_font";
+}

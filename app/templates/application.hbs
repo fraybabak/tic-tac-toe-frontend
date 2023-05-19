@@ -1,7 +1,20 @@
-{{page-title "TicTocFrontend"}}
+{{! app/templates/application.hbs }}
+{{page-title "TicTocToe Frontend"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{#main-component}}
+  <h1 class="text-3xl font-bold">Welcome to Tic Tac Toe</h1>
 
-{{outlet}}
+  <div class="flex flex-col space-y-4">
+    <div class="bg-blue-500 px-4 py-2 rounded">
+      <a href="/game" class="text-white font-bold">New Game</a>
+    </div>
+    <div class="bg-blue-500 px-4 py-2 rounded">
+      <a href="/players" class="text-white font-bold">Players</a>
+    </div>
+    <div class="bg-blue-500 px-4 py-2 rounded">
+      <a href="/games" class="text-white font-bold">Games</a>
+    </div>
+    {{outlet}}
+  </div>
+
+{{/main-component}}

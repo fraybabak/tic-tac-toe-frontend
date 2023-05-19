@@ -1,0 +1,8 @@
+<!-- app/templates/components/player-list.hbs -->
+<ul>
+  {{#each @players as |player|}}
+    <li>
+      <p>Name: {{player.name}}  - {{player.user_name}}</p>
+    </li>
+  {{/each}}
+</ul>
