@@ -1,0 +1,19 @@
+<ul>
+    {{#each @games as |game index|}}
+    <li class="bg-gray-100 p-2 my-2">
+        <p class="text-lg font-sans">
+            {{index}}. {{game.player_one}} - {{game.player_two}}
+        </p>
+        <p class="text-lg font-sans">
+            {{game.winner_id}}
+        </p>
+        <p class="text-lg font-sans">
+            {{game.status}}
+        </p>
+        <p class="text-lg font-sans">
+            {{game.game_type}}
+        </p>
+    </li>
+    {{/each}}
+    <LinkTo @route="index" class="text-blue-500">Home</LinkTo>
+</ul>

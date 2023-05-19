@@ -9,11 +9,7 @@ export default class PlayerController extends Controller {
   @tracked players; // Define a tracked property to hold the fetched players
 
   @action
-  async fetchPlayers() {
-    try {
-      this.players = await this.store.findAll('player');
-    } catch (error) {
-      console.error('Error fetching players:', error);
-    }
+  getFullName(player) {
+    return `${player.name} ${player.user_name}`;
   }
 }

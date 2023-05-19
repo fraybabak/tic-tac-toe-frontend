@@ -1,8 +1,12 @@
-<!-- app/templates/components/player-list.hbs -->
+{{!-- app/templates/components/player-list.hbs --}}
 <ul>
-  {{#each @players as |player|}}
-    <li>
-      <p>Name: {{player.name}}  - {{player.user_name}}</p>
+    {{#each @players as |player index|}}
+    <li class="bg-gray-100 p-2 my-2">
+        <p class="text-lg font-sans">
+            {{index}}. {{player.name}} - {{player.user_name}}
+            {{this.getFullName player}}
+        </p>
     </li>
-  {{/each}}
+    {{/each}}
+    <LinkTo @route="index" class="text-blue-500">Home</LinkTo>
 </ul>
