@@ -1,11 +1,10 @@
 {{page-title "Index"}}
 {{outlet}}
 
-<h1 class="text-3xl font-bold py-8 font-sans">Tic Tac Toe</h1>
-
 <div class="flex flex-col space-y-4">
+  <h1 class="text-3xl font-bold py-8 font-sans">Tic Tac Toe</h1>
   <div class="bg-green-500 px-4 py-2 rounded bg-indigo-950/50">
-    <a href="/game" class="text-black font-bold font-sans">New Game</a>
+    <LinkTo @route="new-game" class="text-black font-bold font-sans">New Game</LinkTo>
   </div>
   <div class="bg-blue-500 px-4 py-2 rounded bg-lime-400/50">
     <LinkTo
