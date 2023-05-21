@@ -10,18 +10,12 @@
       <input type="text" {{on "input" this.updatePlayerTwo}} />
     </label>
     <button
-      {{on "click" this.startNewGame}}
       class="bg-red-500 px-4 py-2 rounded bg-sky-500/50"
+      type="button"
+      {{on "click" this.startNewGame}}
     >
       Start Game
     </button>
   </div>
 
-  <TicTacToeBoard
-    @gameId={{this.gameId}}
-    @currentPlayerId={{this.currentPlayerId}}
-    @playerOne={{this.playerOne}}
-    @playerTwo={{this.playerTwo}}
-    @showBoard={{this.showBoard}}
-  />
 </MainComponent>

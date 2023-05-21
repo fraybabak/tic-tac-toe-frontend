@@ -1,4 +1,4 @@
-{{#if this.showBoard}}
+{{#if this.gameService.showBoard}}
 <div class="game-board">
     {{#each this.gameBoard as |row index|}}
     <div class="game-row">
@@ -12,5 +12,5 @@
 </div>
 {{else}}
 <h1>Game Over</h1>
-<LinkTo @route="index" class="text-blue-500">Home</LinkTo>
 {{/if}}
+<LinkTo @route="index" class="text-blue-500">Home</LinkTo>
