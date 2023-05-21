@@ -1,16 +1,22 @@
-{{#if this.gameService.showBoard}}
-<div class="game-board">
-    {{#each this.gameBoard as |row index|}}
-    <div class="game-row">
+<div class="container mx-auto flex justify-center items-center min-h-screen">
+    <div class="grid grid-cols-3">
+        {{#each this.gameBoard as |row index|}}
         {{#each row as |cell cellIndex|}}
-        <button type="button" {{on 'click' (fn this.makeMove index cellIndex)}}>
-            {{cell}}
-        </button>
+        <div class="h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer" {{on 'click' (fn
+            this.makeMove index cellIndex)}}>
+            {{if (cell) cell}}
+        </div>
+        {{/each}}
         {{/each}}
     </div>
-    {{/each}}
+
+    <div class="flex justify-between mt-4">
+       <p class="text-lg font-sans">Player One: {{this.gameService.Player_one.name}} - {{this.gameService.Player_one.user_name}}</p>
+       <p class="text-lg font-sans">Player Two: {{this.gameService.Player_two.name}} - {{this.gameService.Player_two.user_name}}</p>
+       <p class="text-lg font-sans">Current Player: {{this.currentPlayer}}</p>
+       <p class="text-lg font-sans">Game Status: {{this.gameService.game.status}}</p>
+    </div>
+    <div class="flex justify-between mt-4">
+        <a id="ember105" class="ember-view text-blue-500" href="/">Home</a>
+    </div>
 </div>
-{{else}}
-<h1>Game Over</h1>
-{{/if}}
-<LinkTo @route="index" class="text-blue-500">Home</LinkTo>

@@ -6,4 +6,5 @@ export default class GameServiceService extends Service {
   @tracked Player_two;
   @tracked game;
   @tracked showBoard = false;
+  @tracked moves = [];
 }

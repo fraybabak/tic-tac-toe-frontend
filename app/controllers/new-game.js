@@ -8,10 +8,6 @@ export default class NewGameController extends Controller {
   @service router;
   @tracked playerOne = '';
   @tracked playerTwo = '';
-  @tracked gameId;
-  @tracked playerOneId;
-  @tracked playerTwoId;
-  @tracked currentPlayerId;
   @tracked showBoard = false;
 
   @action
@@ -52,7 +48,6 @@ export default class NewGameController extends Controller {
 }
 
 async function createPlayer(name) {
-  console.log(name, 'sadasdasd');
   let playerResponse = await fetch('http://localhost:3000/player/create', {
     method: 'POST',
     headers: {
