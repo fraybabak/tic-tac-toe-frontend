@@ -2,12 +2,28 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { run } from '@ember/runloop';
+import TicTacToeBot from '../helpers/tic-tac-toe-bot';
+
+import { set } from '@ember/object';
 
 export default class TicTacToeBoardComponent extends Component {
+  bot = new TicTacToeBot();
+  @service router;
+  @service gameService;
+  @tracked gameBoard = {
+    0: '',
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+    6: '',
+    7: '',
+    8: '',
+  };
+  currentPlayer = 'X';
   constructor() {
     super(...arguments);
-    console.log(this.args.id);
     this.initializeGameState();
   }
 
@@ -15,15 +31,13 @@ export default class TicTacToeBoardComponent extends Component {
     await this.initializeGame();
     await this.calculateMoves();
   }
-  @service router;
-  @service gameService;
-  @tracked gameBoard = ['', '', '', '', '', '', '', '', ''];
-
-  @tracked currentPlayer = 'X';
 
   @action
   async makeMove(position) {
-    if (this.gameBoard[position] !== '') {
+    if (
+      this.gameBoard[position] !== '' ||
+      ['finished', 'draw'].includes(this.gameService.game.status)
+    ) {
       return; // Cell already taken
     }
 
@@ -43,12 +57,17 @@ export default class TicTacToeBoardComponent extends Component {
     });
 
     if (moveResponse.ok) {
-      run(() => {
-        this.gameBoard[position] = this.currentPlayer;
-        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
-        console.log(this.gameBoard);
-      });
+      set(this.gameBoard, `${position}`, this.currentPlayer);
+      this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+      this.changeGameStatus(await moveResponse.json());
+      if (this.currentPlayer === 'O') {
+        this.makeMove(this.bot.bestMove(this.gameBoard, 'O'));
+      }
     }
+  }
+
+  changeGameStatus(data) {
+    this.gameService.game = data.stat.game;
   }
 
   async initializeGame() {
@@ -77,8 +96,11 @@ export default class TicTacToeBoardComponent extends Component {
           : 'X';
       this.gameService.moves.forEach((move) => {
         let column = move.position;
-        this.gameBoard[column] =
-          move.player_id === this.gameService.game.player_one_id ? 'X' : 'O';
+        set(
+          this.gameBoard,
+          `${column}`,
+          move.player_id === this.gameService.game.player_one_id ? 'X' : 'O'
+        );
       });
     }
   }
