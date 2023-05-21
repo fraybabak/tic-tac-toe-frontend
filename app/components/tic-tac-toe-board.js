@@ -12,31 +12,18 @@ export default class TicTacToeBoardComponent extends Component {
   }
 
   async initializeGameState() {
-    if (!this.gameService.game) {
-      let gameId = this.router.currentRoute.params.id;
-      this.gameService.game = await getGame(gameId);
-      this.gameService.Player_one = await getPlayer(
-        this.gameService.game.player_one_id
-      );
-      this.gameService.Player_two = await getPlayer(
-        this.gameService.game.player_two_id
-      );
-      this.gameService.moves = await getMoves(gameId);
-    }
+    await this.initializeGame();
+    await this.calculateMoves();
   }
   @service router;
   @service gameService;
-  @tracked gameBoard = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
-  ];
+  @tracked gameBoard = ['', '', '', '', '', '', '', '', ''];
 
   @tracked currentPlayer = 'X';
 
   @action
-  async makeMove(row, column) {
-    if (this.gameBoard[row][column] !== '') {
+  async makeMove(position) {
+    if (this.gameBoard[position] !== '') {
       return; // Cell already taken
     }
 
@@ -51,17 +38,47 @@ export default class TicTacToeBoardComponent extends Component {
           this.currentPlayer === 'X'
             ? this.gameService.game.player_one_id
             : this.gameService.game.player_two_id,
-        position: row * 3 + column,
+        position: position,
       }),
     });
 
     if (moveResponse.ok) {
       run(() => {
-        console.log(this.gameBoard[row][column], 'before');
-        this.gameBoard[row][column] = this.currentPlayer;
-        console.log(this.gameBoard[row][column], 'after');
+        this.gameBoard[position] = this.currentPlayer;
         this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
         console.log(this.gameBoard);
+      });
+    }
+  }
+
+  async initializeGame() {
+    if (!this.gameService.game) {
+      let gameId = this.router.currentRoute.params.id;
+      this.gameService.game = await getGame(gameId);
+      this.gameService.Player_one = await getPlayer(
+        this.gameService.game.player_one_id
+      );
+      this.gameService.Player_two = await getPlayer(
+        this.gameService.game.player_two_id
+      );
+      console.log(this.gameBoard);
+    }
+  }
+
+  async calculateMoves() {
+    let gameId = this.router.currentRoute.params.id;
+    this.gameService.moves = await getMoves(gameId);
+    if (this.gameService.moves.length > 0) {
+      console.log(this.gameService.moves[this.gameService.moves.length - 1]);
+      this.currentPlayer =
+        this.gameService.moves[this.gameService.moves.length - 1].player_id ===
+        this.gameService.game.player_one_id
+          ? 'O'
+          : 'X';
+      this.gameService.moves.forEach((move) => {
+        let column = move.position;
+        this.gameBoard[column] =
+          move.player_id === this.gameService.game.player_one_id ? 'X' : 'O';
       });
     }
   }
