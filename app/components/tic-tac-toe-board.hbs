@@ -1,13 +1,16 @@
-
-<div class="flex flex-col">
-    {{#each this.board as |row rowIndex|}}
-    <div class="flex">
+{{#if this.showBoard}}
+<div class="game-board">
+    {{#each this.gameBoard as |row index|}}
+    <div class="game-row">
         {{#each row as |cell cellIndex|}}
-        <div class="border border-black text-5xl text-center cursor-pointer p-4" {{on "click" (fn this.onClickCell
-            rowIndex cellIndex)}}>
+        <button type="button" {{on 'click' (fn this.makeMove index cellIndex)}}>
             {{cell}}
-        </div>
+        </button>
         {{/each}}
     </div>
     {{/each}}
 </div>
+{{else}}
+<h1>Game Over</h1>
+<LinkTo @route="index" class="text-blue-500">Home</LinkTo>
+{{/if}}

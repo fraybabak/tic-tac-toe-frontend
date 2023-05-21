@@ -1,3 +1,27 @@
 {{! app/templates/new-game.hbs }}
+<MainComponent>
+  <div>
+    <label>
+      Player One:
+      <input type="text" {{on "input" this.updatePlayerOne}} />
+    </label>
+    <label>
+      Player Two:
+      <input type="text" {{on "input" this.updatePlayerTwo}} />
+    </label>
+    <button
+      {{on "click" this.startNewGame}}
+      class="bg-red-500 px-4 py-2 rounded bg-sky-500/50"
+    >
+      Start Game
+    </button>
+  </div>
 
-<TicTacToeBoard />
+  <TicTacToeBoard
+    @gameId={{this.gameId}}
+    @currentPlayerId={{this.currentPlayerId}}
+    @playerOne={{this.playerOne}}
+    @playerTwo={{this.playerTwo}}
+    @showBoard={{this.showBoard}}
+  />
+</MainComponent>
