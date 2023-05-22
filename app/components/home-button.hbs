@@ -1,0 +1,6 @@
+<button {{on "click" this.onClick}} class="bg-red-500 text-white px-4 py-2 rounded flex items-center">
+    <LinkTo @route="index" class="text-inherit flex items-center">
+        <i class="material-icons mr-1">home</i>
+        <span>{{yield}}</span>
+    </LinkTo>
+</button>

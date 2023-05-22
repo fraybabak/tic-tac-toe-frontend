@@ -1,6 +1,6 @@
 <div class="container mx-auto flex justify-center items-center min-h-screen">
     <div class="grid grid-cols-3">
-        <!-- Tic-Tac-Toe Board -->
+        {{!-- Tic-Tac-Toe Board --}}
         <div id="0" class="h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer" {{on 'click'
             (fn this.makeMove 0)}}>
             {{get this.gameBoard '0' }}
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- Right Container -->
+    {{!-- Right Container --}}
     <div class="flex flex-col justify-between ml-4">
         <div>
             <p class="text-lg font-sans">Player X: {{this.gameService.Player_one.name}} -
@@ -67,7 +67,9 @@
 
         </div>
         <div>
-            <a id="ember105" class="ember-view text-blue-500" href="/">Home</a>
+            <HomeButton>
+                Home
+            </HomeButton>
         </div>
     </div>
 </div>

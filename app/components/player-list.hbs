@@ -1,12 +1,41 @@
-{{!-- app/templates/components/player-list.hbs --}}
-<ul>
-    {{#each @players as |player index|}}
-    <li class="bg-gray-100 p-2 my-2">
-        <p class="text-lg font-sans">
-            {{index}}. {{player.name}} - {{player.user_name}}
-            {{this.getFullName player}}
-        </p>
-    </li>
-    {{/each}}
-    <LinkTo @route="index" class="text-blue-500">Home</LinkTo>
-</ul>
+<div class="player-list">
+<table class="table-auto">
+    <thead>
+        <tr>
+            <th class="px-4 border">Player Name</th>
+            <th class="px-4 border">Username</th>
+            <th class="px-4 border">Wins</th>
+            <th class="px-4 border">Losses</th>
+            <th class="px-4 border">Draws</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.players as |player|}}
+        <tr class="bg-gray-100">
+            <td class="px-4 border">{{player.name}}</td>
+            <td class="px-4 border">{{player.user_name}}</td>
+            <td class="px-4 border">{{player.wins}}</td>
+            <td class="px-4 border">{{player.losses}}</td>
+            <td class="px-4 border">{{player.draws}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="pagination flex items-center justify-center mt-4">
+    <button class="pagination-button bg-blue-500 text-white px-4 py-2 rounded" {{on "click" this.previousPage}}
+        disabled={{not this.showPreviousPage}}>
+        Previous
+    </button>
+    <span class="current-page mx-4">{{this.currentPage}}</span>
+    <button class="pagination-button bg-blue-500 text-white px-4 py-2 rounded" {{on "click" this.nextPage}}
+        disabled={{not this.showNextPage}}>
+        Next
+    </button>
+    <span class="current-page mx-4"></span>
+    <HomeButton>
+        Home
+    </HomeButton>
+</div>
+
+</div>

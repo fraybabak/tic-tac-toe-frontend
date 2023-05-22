@@ -47,6 +47,7 @@
     "ember-data": "~4.11.3",
     "ember-fetch": "^8.1.2",
     "ember-load-initializers": "^2.1.2",
+    "ember-material-design-icons-shim": "^0.1.13",
     "ember-modifier": "^4.1.0",
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^6.2.0",
@@ -83,6 +84,7 @@
   },
   "dependencies": {
     "@embroider/compat": "^3.0.0",
-    "@embroider/webpack": "^3.0.0"
+    "@embroider/webpack": "^3.0.0",
+    "material-icons": "^1.13.6"
   }
 }
