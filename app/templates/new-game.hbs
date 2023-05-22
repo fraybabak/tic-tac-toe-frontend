@@ -1,21 +1,53 @@
 {{! app/templates/new-game.hbs }}
 <MainComponent>
-  <div>
-    <label>
-      Player One:
-      <input type="text" {{on "input" this.updatePlayerOne}} />
-    </label>
-    <label>
-      Player Two:
-      <input type="text" {{on "input" this.updatePlayerTwo}} />
-    </label>
-    <button
-      class="bg-red-500 px-4 py-2 rounded bg-sky-500/50"
-      type="button"
-      {{on "click" this.startNewGame}}
-    >
-      Start Game
-    </button>
+  <div class="flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded shadow">
+      <div class="mb-4">
+        <label class="block">
+          Player One:
+          <input
+            type="text"
+            class="border border-gray-300 rounded px-4 py-2"
+            {{on "input" this.updatePlayerOne}}
+          />
+        </label>
+      </div>
+
+      <div class="mb-4">
+        <label class="block">
+          <input
+            type="checkbox"
+            class="mr-2"
+            {{on "change" this.toggleGameMode}}
+            checked={{this.singlePlayerMode}}
+          />
+          Play against computer
+        </label>
+      </div>
+
+      {{#unless this.singlePlayerMode}}
+        <div class="mb-4">
+          <label class="block">
+            Player Two:
+            <input
+              type="text"
+              class="border border-gray-300 rounded px-4 py-2"
+              {{on "input" this.updatePlayerTwo}}
+            />
+          </label>
+        </div>
+      {{/unless}}
+
+      <div>
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded"
+          type="button"
+          {{on "click" this.startNewGame}}
+        >
+          Start Game
+        </button>
+      </div>
+    </div>
   </div>
 
 </MainComponent>

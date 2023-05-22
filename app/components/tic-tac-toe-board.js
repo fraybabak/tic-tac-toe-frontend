@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import TicTacToeBot from '../helpers/tic-tac-toe-bot';
+import { computed } from '@ember/object';
 
 import { set } from '@ember/object';
 
@@ -61,7 +62,9 @@ export default class TicTacToeBoardComponent extends Component {
       this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
       this.changeGameStatus(await moveResponse.json());
       if (this.currentPlayer === 'O') {
-        this.makeMove(this.bot.bestMove(this.gameBoard, 'O'));
+        if (this.gameService.game.game_type == 'single_player') {
+          this.makeMove(this.bot.bestMove(this.gameBoard, 'O'));
+        }
       }
     }
   }
@@ -80,7 +83,11 @@ export default class TicTacToeBoardComponent extends Component {
       this.gameService.Player_two = await getPlayer(
         this.gameService.game.player_two_id
       );
-      console.log(this.gameBoard);
+      if (this.currentPlayer === 'O') {
+        if (this.gameService.game.game_type == 'single_player') {
+          this.makeMove(this.bot.bestMove(this.gameBoard, 'O'));
+        }
+      }
     }
   }
 
@@ -88,7 +95,6 @@ export default class TicTacToeBoardComponent extends Component {
     let gameId = this.router.currentRoute.params.id;
     this.gameService.moves = await getMoves(gameId);
     if (this.gameService.moves.length > 0) {
-      console.log(this.gameService.moves[this.gameService.moves.length - 1]);
       this.currentPlayer =
         this.gameService.moves[this.gameService.moves.length - 1].player_id ===
         this.gameService.game.player_one_id
