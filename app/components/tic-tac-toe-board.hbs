@@ -1,108 +1,127 @@
-<div class='container mx-auto flex justify-center items-center min-h-screen'>
-  <div class='grid grid-cols-3'>
-    {{! Tic-Tac-Toe Board }}
-    <div
-      id='0'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 0)}}
-    >
-      {{get this.gameBoard '0'}}
+<div class='flex items-center'>
+  <div class='bg-white p-8 rounded min-w-[400px]'>
+    <div class='container mx-auto flex justify-center items-center mb-4'>
+
+      <div class='grid grid-cols-3'>
+        {{! Tic-Tac-Toe Board }}
+        <div
+          id='0'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 0)}}
+        >
+          {{get this.gameBoard '0'}}
+        </div>
+
+        <div
+          id='1'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 1)}}
+        >
+          {{get this.gameBoard '1'}}
+        </div>
+
+        <div
+          id='2'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 2)}}
+        >
+          {{get this.gameBoard '2'}}
+        </div>
+
+        <div
+          id='3'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 3)}}
+        >
+          {{get this.gameBoard '3'}}
+        </div>
+
+        <div
+          id='4'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 4)}}
+        >
+          {{get this.gameBoard '4'}}
+        </div>
+
+        <div
+          id='5'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 5)}}
+        >
+          {{get this.gameBoard '5'}}
+        </div>
+
+        <div
+          id='6'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 6)}}
+        >
+          {{get this.gameBoard '6'}}
+        </div>
+
+        <div
+          id='7'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 7)}}
+        >
+          {{get this.gameBoard '7'}}
+        </div>
+
+        <div
+          id='8'
+          class='h-[120px] w-[120px] text-[60px] border-2 border-black flex items-center justify-center cursor-pointer'
+          {{on 'click' (fn this.makeMove 8)}}
+        >
+          {{get this.gameBoard '8'}}
+        </div>
+      </div>
+
     </div>
 
-    <div
-      id='1'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 1)}}
-    >
-      {{get this.gameBoard '1'}}
-    </div>
-
-    <div
-      id='2'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 2)}}
-    >
-      {{get this.gameBoard '2'}}
-    </div>
-
-    <div
-      id='3'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 3)}}
-    >
-      {{get this.gameBoard '3'}}
-    </div>
-
-    <div
-      id='4'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 4)}}
-    >
-      {{get this.gameBoard '4'}}
-    </div>
-
-    <div
-      id='5'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 5)}}
-    >
-      {{get this.gameBoard '5'}}
-    </div>
-
-    <div
-      id='6'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 6)}}
-    >
-      {{get this.gameBoard '6'}}
-    </div>
-
-    <div
-      id='7'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 7)}}
-    >
-      {{get this.gameBoard '7'}}
-    </div>
-
-    <div
-      id='8'
-      class='h-20 w-20 border-2 border-black flex items-center justify-center cursor-pointer'
-      {{on 'click' (fn this.makeMove 8)}}
-    >
-      {{get this.gameBoard '8'}}
-    </div>
-  </div>
-
-  {{! Right Container }}
-  <div class='flex flex-col justify-between ml-4'>
     <div>
-      <p class='text-lg font-sans'>Player X:
-        {{this.gameService.Player_one.name}}
-        -
-        {{this.gameService.Player_one.user_name}}</p>
-      <p class='text-lg font-sans'>Player O:
-        {{this.gameService.Player_two.name}}
-        -
-        {{this.gameService.Player_two.user_name}}</p>
-      <p class='text-lg font-sans'>Current Player: {{this.currentPlayer}}</p>
-      <p class='text-lg font-sans'>Game Status:
-        {{this.gameService.game.status}}</p>
-      {{#if this.gameService.game.winner_id}}
-        {{#if
-          (eq this.gameService.game.winner_id this.gameService.Player_one.id)
-        }}
-          <p class='text-lg font-sans'>Winner: X </p>
-        {{else}}
-          <p class='text-lg font-sans'>Winner: O </p>
+      <div class='mb-4'>
+
+        <TextIcon
+          @icon='face'
+          @title='Player X'
+          @body={{this.gameService.Player_one.name}}
+        />
+
+        <TextIcon
+          @icon='face'
+          @title='Player O'
+          @body={{this.gameService.Player_two.name}}
+        />
+
+        <TextIcon
+          @icon='home'
+          @title='Current Player'
+          @body={{this.currentPlayer}}
+        />
+
+        <TextIcon
+          @icon='home'
+          @title='Game Status'
+          @body={{this.gameService.game.status}}
+        />
+
+        {{#if this.gameService.game.winner_id}}
+          {{#if
+            (eq this.gameService.game.winner_id this.gameService.Player_one.id)
+          }}
+            <TextIcon @icon='home' @title='Winner' @body={{'X'}} />
+          {{else}}
+            <TextIcon @icon='home' @title='Winner' @body={{'O'}} />
+          {{/if}}
         {{/if}}
-      {{/if}}
 
-    </div>
-    <div>
-      <HomeButton>
-        Home
-      </HomeButton>
+      </div>
+      <div>
+        <HomeButton>
+          Home
+        </HomeButton>
+      </div>
     </div>
   </div>
 </div>

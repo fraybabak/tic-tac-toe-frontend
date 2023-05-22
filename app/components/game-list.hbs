@@ -36,17 +36,13 @@
     <div class='pagination flex items-center justify-between p-4 gap-4'>
       <div class='flex items-center gap-2'>
         <button
-          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded'
-          {{on 'click' this.previousPage}}
-          disabled={{not this.showPreviousPage}}
+          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded' disabled={{not this.showPreviousPage}} type="button" {{on 'click' this.previousPage}}
         >
           Prev
         </button>
         <span class='current-page mx-4'>{{this.currentPage}}</span>
         <button
-          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded'
-          {{on 'click' this.nextPage}}
-          disabled={{not this.showNextPage}}
+          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded' disabled={{not this.showNextPage}} type="button" {{on 'click' this.nextPage}}
         >
           Next
         </button>

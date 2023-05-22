@@ -1,41 +1,64 @@
-<div class="player-list">
-<table class="table-auto">
-    <thead>
-        <tr>
-            <th class="px-4 border">Player Name</th>
-            <th class="px-4 border">Username</th>
-            <th class="px-4 border">Wins</th>
-            <th class="px-4 border">Losses</th>
-            <th class="px-4 border">Draws</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each this.players as |player|}}
-        <tr class="bg-gray-100">
-            <td class="px-4 border">{{player.name}}</td>
-            <td class="px-4 border">{{player.user_name}}</td>
-            <td class="px-4 border">{{player.wins}}</td>
-            <td class="px-4 border">{{player.losses}}</td>
-            <td class="px-4 border">{{player.draws}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class='flex items-center'>
+  <div class='bg-white p-8 rounded min-w-[400px]'>
+    <div class='flex flex-col'>
+      <div class='relative overflow-x-auto shadow-md sm:rounded-lg'>
+        <table
+          class='w-full text-sm text-left text-gray-500 dark:text-gray-400'
+        >
+          <thead
+            class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'
+          >
+            <tr>
+              <th scope='col' class='px-6 py-3'>Player Name</th>
+              <th scope='col' class='px-6 py-3'>Username</th>
+              <th scope='col' class='px-6 py-3'>Wins</th>
+              <th scope='col' class='px-6 py-3'>Losses</th>
+              <th scope='col' class='px-6 py-3'>Draws</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.players as |player|}}
+              <tr
+                class='bg-white border-b light:bg-gray-800 light:border-gray-700 hover:bg-gray-50 light:hover:bg-gray-600'
+              >
+                <td class='px-6 py-4'>{{player.name}}</td>
+                <td class='px-6 py-4'>{{player.user_name}}</td>
+                <td class='px-6 py-4'>{{player.wins}}</td>
+                <td class='px-6 py-4'>{{player.losses}}</td>
+                <td class='px-6 py-4'>{{player.draws}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<div class="pagination flex items-center justify-center mt-4">
-    <button class="pagination-button bg-blue-500 text-white px-4 py-2 rounded" {{on "click" this.previousPage}}
-        disabled={{not this.showPreviousPage}}>
-        Previous
-    </button>
-    <span class="current-page mx-4">{{this.currentPage}}</span>
-    <button class="pagination-button bg-blue-500 text-white px-4 py-2 rounded" {{on "click" this.nextPage}}
-        disabled={{not this.showNextPage}}>
-        Next
-    </button>
-    <span class="current-page mx-4"></span>
-    <HomeButton>
-        Home
-    </HomeButton>
-</div>
+    <div class='pagination flex items-center justify-between p-4 gap-4'>
+      <div class='flex items-center gap-2'>
+        <button
+          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded'
+          disabled={{not this.showPreviousPage}}
+          type='button'
+          {{on 'click' this.previousPage}}
+        >
+          Prev
+        </button>
+        <span class='current-page mx-4'>{{this.currentPage}}</span>
+        <button
+          class='pagination-button bg-blue-400 text-white px-4 py-2 rounded'
+          disabled={{not this.showNextPage}}
+          type='button'
+          {{on 'click' this.nextPage}}
+        >
+          Next
+        </button>
+      </div>
+      <div>
+        <HomeButton>
+          Home
+        </HomeButton>
+      </div>
+    </div>
 
+  </div>
 </div>
