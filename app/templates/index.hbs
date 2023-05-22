@@ -1,25 +1,31 @@
-{{page-title "Index"}}
+{{page-title 'Index'}}
 
-{{page-title "TicTocToe Frontend"}}
+{{page-title 'TicTocToe Frontend'}}
 
 <MainComponent>
-  <div class="flex flex-col space-y-4">
-    <h1 class="text-3xl font-bold py-8 font-sans">Tic Tac Toe</h1>
-    <div class="bg-green-500 px-4 py-2 rounded bg-indigo-950/50">
-      <LinkTo @route="new-game" class="text-black font-bold font-sans">New Game
-      </LinkTo>
-    </div>
-    <div class="bg-blue-500 px-4 py-2 rounded bg-lime-400/50">
-      <LinkTo
-        @route="players"
-        class="text-black font-bold font-sans"
-      >Players</LinkTo>
-    </div>
-    <div class="bg-red-500 px-4 py-2 rounded bg-sky-500/50">
-      <LinkTo
-        @route="games"
-        class="text-black font-bold font-sans"
-      >Games</LinkTo>
+  <div class='flex items-center'>
+    <div class='bg-white p-8 rounded min-w-[400px]'>
+      <div class='flex items-center mb-4'>
+        <h1 class='text-3xl font-bold py-8'>Tic Tac Toe</h1>
+        <img src='/assets/images/board.svg' class='w-8 ml-4' alt='Board' />
+      </div>
+      <div class='mb-4'>
+        <div class='bg-green-500 px-4 py-2 rounded bg-indigo-950/50'>
+          <LinkTo @route='new-game' class='text-black font-bold'>New Game
+          </LinkTo>
+        </div>
+      </div>
+      <div class='mb-4'>
+        <div class='bg-blue-500 px-4 py-2 rounded bg-lime-400/50'>
+          <LinkTo @route='players' class='text-black font-bold'>Players</LinkTo>
+        </div>
+      </div>
+      <div class='mb-4'>
+        <div class='bg-red-500 px-4 py-2 rounded bg-sky-500/50'>
+          <LinkTo @route='games' class='text-black font-bold'>Games</LinkTo>
+        </div>
+      </div>
+
     </div>
   </div>
 

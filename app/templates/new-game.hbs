@@ -1,48 +1,53 @@
 {{! app/templates/new-game.hbs }}
 <MainComponent>
-  <div class="flex justify-center items-center min-h-screen">
-    <div class="bg-white p-8 rounded shadow">
-      <div class="mb-4">
-        <label class="block">
-          Player One:
+  <div class='flex items-center'>
+    <div class='bg-white p-8 rounded min-w-[400px]'>
+      <div class='mb-4'>
+        <label class='relative inline-flex items-center cursor-pointer'>
           <input
-            type="text"
-            class="border border-gray-300 rounded px-4 py-2"
-            {{on "input" this.updatePlayerOne}}
+            type='checkbox'
+            value={{this.singlePlayerMode}}
+            class='sr-only peer'
+            {{on 'change' this.toggleGameMode}}
           />
+          <div
+            class="w-7 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+          ></div>
+          <span
+            class='ml-3 text-sm font-medium text-gray-900 dark:text-gray-300'
+          >Single player</span>
         </label>
       </div>
 
-      <div class="mb-4">
-        <label class="block">
-          <input
-            type="checkbox"
-            class="mr-2"
-            {{on "change" this.toggleGameMode}}
-            checked={{this.singlePlayerMode}}
-          />
-          Play against computer
+      <div class='mb-4'>
+        <label class='block mb-2'>
+          Player One:
         </label>
+        <input
+          type='text'
+          class='border border-gray-300 rounded px-4 py-2 w-full'
+          {{on 'input' this.updatePlayerOne}}
+        />
       </div>
 
       {{#unless this.singlePlayerMode}}
-        <div class="mb-4">
-          <label class="block">
+        <div class='mb-10'>
+          <label class='block mb-2'>
             Player Two:
-            <input
-              type="text"
-              class="border border-gray-300 rounded px-4 py-2"
-              {{on "input" this.updatePlayerTwo}}
-            />
           </label>
+          <input
+            type='text'
+            class='border border-gray-300 rounded px-4 py-2 w-full'
+            {{on 'input' this.updatePlayerTwo}}
+          />
         </div>
       {{/unless}}
 
-      <div>
+      <div class='flex items-center gap-3'>
         <button
-          class="bg-red-500 text-white px-4 py-2 rounded"
-          type="button"
-          {{on "click" this.startNewGame}}
+          class='bg-red-500 text-white px-4 py-2 rounded'
+          type='button'
+          {{on 'click' this.startNewGame}}
         >
           Start Game
         </button>
